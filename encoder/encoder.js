@@ -11,9 +11,5 @@ function encoder(str) {
     }
   }, []);
 
-  console.log(encodedString.join(""));
+  return encodedString.join("");
 }
-
-encoder("XXXYYYYZZQQX");
-encoder("XYYYYZZQQ");
-encoder("XXXYYYYZZQQXX");

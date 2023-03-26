@@ -19,7 +19,10 @@ export default function LoginPage() {
         label="Email"
         variant="standard"
         fullWidth
-        sx={{ display: 'block', my: '2rem', color: 'white' }}
+        sx={{ display: 'block', my: '2rem' }}
+        inputProps={{
+          style: { color: 'white' },
+        }}
       />
       <FormHelperText id="my-helper-text">
         We&apos;ll never share your email.
@@ -31,6 +34,9 @@ export default function LoginPage() {
         variant="standard"
         fullWidth
         sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
+        inputProps={{
+          style: { color: 'white' },
+        }}
       />
 
       <h3 className="text-xl">Forgot password?</h3>

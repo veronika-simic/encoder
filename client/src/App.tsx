@@ -1,26 +1,19 @@
 import React from 'react';
 
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-  RouterProvider,
-} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+
 import EncodePage from './pages/Encode/Encode';
 import LoginPage from './pages/Login/LoginPage';
+import Logo from './assets/Logo';
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <>
+function App() {
+  return (
+    <Routes>
       <Route path="/" element={<LoginPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/encode" element={<EncodePage />} />
-    </>
-  )
-);
-
-function App() {
-  return <RouterProvider router={router} />;
+    </Routes>
+  );
 }
 
 export default App;

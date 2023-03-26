@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  align-items: center;
+  background: linear-gradient(#14a973, #0c0a78);
+  background-attachment: fixed;
+  color: white;
+  display: flex;
+  font-family: 'Inter';
+  justify-content: center;
+}

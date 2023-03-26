@@ -1,17 +1,52 @@
-import { Typography, TextField, Button } from '@mui/material';
+import {
+  Typography,
+  TextField,
+  Button,
+  FormControl,
+  FormHelperText,
+} from '@mui/material';
 import React from 'react';
 
 export default function LoginPage() {
   return (
-    <>
-      <h1 className="text-6xl">LOGIN.</h1>
-      <Typography>Welcome Back,</Typography>
-      <Typography>Sign in to continue</Typography>
-      <TextField id="email" label="Email" variant="standard" />
-      <TextField id="password" label="Password" variant="standard" />
-      <Typography>Forgot password?</Typography>
-      <Button variant="outlined">Log in</Button>
-      <Typography>New user? Sign up</Typography>
-    </>
+    <FormControl>
+      <h1 className="mb-6 text-6xl font-bold">LOGIN.</h1>
+      <h2 className="mb-2 text-5xl tracking-wide">Welcome Back,</h2>
+      <h2 className="text-4xl font-light">Sign in to continue</h2>
+
+      <TextField
+        id="email"
+        label="Email"
+        variant="standard"
+        fullWidth
+        sx={{ display: 'block', my: '2rem', color: 'white' }}
+      />
+      <FormHelperText id="my-helper-text">
+        We'll never share your email.
+      </FormHelperText>
+
+      <TextField
+        id="password"
+        label="Password"
+        variant="standard"
+        fullWidth
+        sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
+      />
+
+      <h3 className="text-xl">Forgot password?</h3>
+      <Button
+        variant="outlined"
+        sx={{
+          borderColor: 'white',
+          color: 'white',
+          fontSize: '2.5rem',
+          padding: '1rem 3.5rem',
+          my: '2rem',
+        }}
+      >
+        Log in
+      </Button>
+      <h3 className="mt-3 text-2xl">New user? Sign up</h3>
+    </FormControl>
   );
 }

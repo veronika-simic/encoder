@@ -22,7 +22,7 @@ export default function LoginPage() {
         sx={{ display: 'block', my: '2rem', color: 'white' }}
       />
       <FormHelperText id="my-helper-text">
-        We'll never share your email.
+        We&apos;ll never share your email.
       </FormHelperText>
 
       <TextField
@@ -39,14 +39,14 @@ export default function LoginPage() {
         sx={{
           borderColor: 'white',
           color: 'white',
-          fontSize: '2.5rem',
-          padding: '1rem 3.5rem',
+          fontSize: '2rem',
+          padding: '1rem 2.5rem',
           my: '2rem',
         }}
       >
         Log in
       </Button>
-      <h3 className="mt-3 text-2xl">New user? Sign up</h3>
+      <h3 className="mt-3 text-xl">New user? Sign up</h3>
     </FormControl>
   );
 }

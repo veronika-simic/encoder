@@ -1,6 +1,7 @@
 import { TextField, Button, FormControl, FormHelperText } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../api/axios';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -49,9 +50,8 @@ export default function LoginPage() {
   };
 
   const navigate = useNavigate();
-  const routeChange = () => {
-    const path = `/encode`;
-    navigate(path);
+  const onButtonClick = () => {
+    loginUser(email, password);
   };
 
   useEffect(() => {
@@ -106,7 +106,6 @@ export default function LoginPage() {
       <h3 className="text-xl">Forgot password?</h3>
       <Button
         variant="outlined"
-        disabled={disabled}
         sx={{
           borderColor: 'white',
           color: 'white',
@@ -114,7 +113,7 @@ export default function LoginPage() {
           padding: '1rem 2.5rem',
           my: '2rem',
         }}
-        onClick={routeChange}
+        onClick={onButtonClick}
       >
         Log in
       </Button>

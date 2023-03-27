@@ -15,8 +15,8 @@
  *           type: string
  *           description: User password that has at least 6 characters and 1 number
  *       example:
- *         email: jane_doe@gmail.com
- *         password: mycoolpassword1
+ *         email: optimus.prime@autobots.com
+ *         password: validPassword1234!
  */
 
 /**

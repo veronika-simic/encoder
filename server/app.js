@@ -1,20 +1,17 @@
 const express = require("express"),
   swaggerJsdoc = require("swagger-jsdoc"),
   swaggerUi = require("swagger-ui-express"),
-  path = require("path");
+  path = require("path"),
+  cors = require("cors");
 const app = express();
-
+app.use(cors());
 const port = 4000;
 const login = require("./login");
 app.use(express.json());
 
-app.use("/", express.static(path.join(__dirname, "../client")));
-app.get("/", (_req, res) => {
-  res.sendFile(path.join(__dirname, "../client", "index.html"));
-});
 app.post("/login", login);
 
-/* swagger */
+/*  swagger */
 const options = {
   definition: {
     openapi: "3.0.1",
@@ -35,7 +32,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://localhost:4000",
+        url: "http://localhost:4000",
       },
     ],
   },

@@ -1,8 +1,13 @@
 import axios from 'axios';
 
-export async function getLoginPage() {
+export async function loginUser(email: string, password: string) {
+  console.log(email, password);
   try {
-    const response = await axios.get('/login');
+    const response = await axios.post('http://localhost:4000/login', {
+      email,
+      password,
+    });
+    console.log(response);
     return response;
   } catch (err) {
     return err;

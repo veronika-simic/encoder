@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Outlet } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, PaletteMode, createTheme } from '@mui/material';
 import EncodePage from './pages/Encode/Encode';
@@ -9,6 +9,7 @@ import Logo from './assets/Logo';
 import lightTheme from './theme/light';
 import darkTheme from './theme/dark';
 import { ColorContext } from './models/ColorContext';
+import NavigationBar from './pages/Navigation/NavigationBar';
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>('light');
@@ -32,9 +33,18 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline enableColorScheme />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/encode" element={<EncodePage />} />
+          <Route
+            element={
+              <>
+                <NavigationBar />
+                <Outlet />
+              </>
+            }
+          >
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/encode" element={<EncodePage />} />
+          </Route>
         </Routes>
       </ThemeProvider>
     </ColorContext.Provider>

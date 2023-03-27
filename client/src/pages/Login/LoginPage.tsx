@@ -7,9 +7,32 @@ export default function LoginPage() {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
-  const handleEmailChange = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const validateEmail = (email: string) => {
+    const emailRegex =
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i;
+    return emailRegex.test(email);
+  };
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    if (!validateEmail(e.target.value)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
 
-  const handlePasswordChange = () => {};
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    if (e.target.value.length < 6 && !e.target.valueAsNumber) {
+      setPasswordError(
+        'Password must be at least 6 characters and contain at least one number'
+      );
+    } else {
+      setPasswordError('');
+    }
+  };
+
   return (
     <FormControl>
       <h1 className="mb-6 text-6xl font-bold">LOGIN.</h1>

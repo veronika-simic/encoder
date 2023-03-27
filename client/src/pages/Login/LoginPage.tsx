@@ -1,11 +1,16 @@
 import { TextField, Button, FormControl, FormHelperText } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [disabled, setDisabled] = useState(true);
+  const [containsN, setContainsN] = useState(false);
+  const [contains6C, setContains6C] = useState(false);
+  const [allValid, setAllValid] = useState(false);
 
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const validateEmail = (email: string) => {
@@ -13,6 +18,7 @@ export default function LoginPage() {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/i;
     return emailRegex.test(email);
   };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (!validateEmail(e.target.value)) {
@@ -22,9 +28,18 @@ export default function LoginPage() {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  const validatePassword = (password: string) => {
+    if (/\d/.test(password)) setContainsN(true);
+
+    if (password.length >= 6) setContains6C(true);
+
+    if (containsN && contains6C) setAllValid(true);
+    return password;
+  };
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    if (e.target.value.length < 6 && !e.target.valueAsNumber) {
+    if (!validatePassword(e.target.value)) {
       setPasswordError(
         'Password must be at least 6 characters and contain at least one number'
       );
@@ -32,6 +47,16 @@ export default function LoginPage() {
       setPasswordError('');
     }
   };
+
+  const navigate = useNavigate();
+  const routeChange = () => {
+    const path = `/encode`;
+    navigate(path);
+  };
+
+  useEffect(() => {
+    setDisabled(!validateEmail(email));
+  }, [email, password]);
 
   return (
     <FormControl>
@@ -54,7 +79,10 @@ export default function LoginPage() {
           style: { color: 'white' },
         }}
       />
-      <FormHelperText id="my-helper-text">
+      <FormHelperText
+        id="my-helper-text"
+        sx={{ textAlign: 'center', color: 'white' }}
+      >
         We&apos;ll never share your email.
       </FormHelperText>
 
@@ -78,6 +106,7 @@ export default function LoginPage() {
       <h3 className="text-xl">Forgot password?</h3>
       <Button
         variant="outlined"
+        disabled={disabled}
         sx={{
           borderColor: 'white',
           color: 'white',
@@ -85,6 +114,7 @@ export default function LoginPage() {
           padding: '1rem 2.5rem',
           my: '2rem',
         }}
+        onClick={routeChange}
       >
         Log in
       </Button>

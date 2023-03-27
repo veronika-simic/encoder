@@ -54,13 +54,16 @@ In orded to run this project first clone this repository with following command:
 
 `git clone https://github.com/veronika-simic/login.git`
 
+Install the dependencies with the following command
 
+`npm install`
 
+After that run the project from the root with 
+
+`npm start`
 ## Usage
-<!-- How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here` -->
+Login with authorized credentials provided in the servers login.js
+Input a string you would like to encode
 
 
 ## Project Status

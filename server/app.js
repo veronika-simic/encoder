@@ -2,7 +2,7 @@ const express = require("express"),
   swaggerJsdoc = require("swagger-jsdoc"),
   swaggerUi = require("swagger-ui-express");
 const app = express();
-const port = 3000;
+const port = 4000;
 const login = require("./login");
 app.use(express.json());
 
@@ -29,7 +29,7 @@ const options = {
     },
     servers: [
       {
-        url: "https://localhost:3000",
+        url: "https://localhost:4000",
       },
     ],
   },

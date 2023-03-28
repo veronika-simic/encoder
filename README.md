@@ -61,6 +61,10 @@ Install the dependencies with the following command
 After that run the project from the root with 
 
 `npm start`
+
+To see the project in browser visit: 
+
+> http://127.0.0.1:5173/
 ## Usage
 Login with authorized credentials provided in the servers login.js
 Input a string you would like to encode

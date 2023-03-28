@@ -17,6 +17,26 @@
  *       example:
  *         email: optimus.prime@autobots.com
  *         password: validPassword1234!
+ *
+ *
+ *
+ */
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Encode:
+ *       type: string
+ *       required:
+ *         - encode
+ *       properties:
+ *         encode:
+ *           type: string
+ *           description: String to encode
+ *       example:
+ *         encode: 'hehhee'
+ *
+ *
  */
 
 /**
@@ -41,8 +61,46 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: User error	
  *       500:
- *         description: Some server error
+ *         description: Internal server error
+ *   get:
+ *     summary: Home page
+ *     tags: [Login]
+ *     responses:
+ *       200:
+ *         description: Login page.
+ *       500:
+ *         description: Internal server error
+ */
+
+/**
+ * @swagger
+ * tags:
+ *   name: Encode
+ *   description: Encode page for inputing desired string to be encoded
+ * /encode:
+ *   post:
+ *     summary: Encodes a string
+ *     tags: [Encode]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Encode'
+ *     responses:
+ *       200:
+ *         description: Encoded string.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Encode'
+ *       400:
+ *         description: User error
+ *       500:
+ *         description: Internal server error
  *
  */
 
@@ -50,11 +108,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", function (req, res) {
-	res.status(200);
+  res.status(200);
 });
-
-
-
-
 
 module.exports = router;

@@ -56,9 +56,13 @@ export default function EncodePage() {
           onChange={handleInputChange}
           error={Boolean(userInputError)}
           helperText={userInputError}
-          sx={{ display: 'block', my: '2rem' }}
+          sx={{ display: 'block', my: '2rem', overflowWrap: 'break-word' }}
           inputProps={{
-            style: { color: theme.palette.primary.main, fontSize: '2rem' },
+            style: {
+              color: theme.palette.primary.main,
+              fontSize: '2rem',
+              textAlign: 'center',
+            },
           }}
           FormHelperTextProps={{
             sx: { fontSize: '1rem', textAlign: 'center' },
@@ -75,12 +79,12 @@ export default function EncodePage() {
         </h2>
         <Box
           sx={{
+            alignItems: 'center',
             border: '2px solid',
             borderColor: theme.palette.primary.main,
             height: '4.5rem',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
           }}
         >
           <p className="text-center text-6xl">

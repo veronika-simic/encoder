@@ -4,6 +4,7 @@ import {
   FormControl,
   FormHelperText,
   Box,
+  useTheme,
 } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +19,7 @@ export default function LoginPage() {
   const [containsN, setContainsN] = useState(false);
   const [contains6C, setContains6C] = useState(false);
   const [allValid, setAllValid] = useState(false);
-
+  const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const validateEmail = (email: string) => {
     const emailRegex =
@@ -91,12 +92,12 @@ export default function LoginPage() {
           helperText={emailError}
           sx={{ display: 'block', my: '2rem' }}
           inputProps={{
-            style: { color: 'white' },
+            style: { color: theme.palette.primary.main },
           }}
         />
         <FormHelperText
           id="my-helper-text"
-          sx={{ textAlign: 'center', color: 'white' }}
+          sx={{ textAlign: 'center', color: theme.palette.primary.main }}
         >
           We&apos;ll never share your email.
         </FormHelperText>
@@ -114,7 +115,7 @@ export default function LoginPage() {
           helperText={passwordError}
           sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
           inputProps={{
-            style: { color: 'white' },
+            style: { color: theme.palette.primary.main },
           }}
         />
 
@@ -122,8 +123,8 @@ export default function LoginPage() {
         <Button
           variant="outlined"
           sx={{
-            borderColor: 'white',
-            color: 'white',
+            borderColor: theme.palette.primary.main,
+            color: theme.palette.primary.main,
             fontSize: '2rem',
             padding: '1rem 2.5rem',
             my: '2rem',
@@ -132,7 +133,7 @@ export default function LoginPage() {
         >
           Log in
         </Button>
-        <h3 className="mt-3 text-xl">New user? Sign up</h3>
+        <h3 className="mt-3 text-center text-xl">New user? Sign up</h3>
       </FormControl>
     </Box>
   );

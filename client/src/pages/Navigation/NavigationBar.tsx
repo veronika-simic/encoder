@@ -7,10 +7,11 @@ export default function NavigationBar() {
   return (
     <Box
       sx={{
-        m: { xs: 0, sm: '1.5rem' },
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        mb: '5rem',
+        mt: '2rem',
+        mx: '3rem',
       }}
     >
       <Logo />

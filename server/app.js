@@ -7,10 +7,11 @@ const app = express();
 app.use(cors());
 const port = 4000;
 const login = require("./login");
+const encode = require("./encoder");
 app.use(express.json());
 
 app.post("/login", login);
-
+app.post("/encode", encode);
 /*  swagger */
 const options = {
   definition: {

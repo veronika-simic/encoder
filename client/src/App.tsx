@@ -5,11 +5,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, PaletteMode, createTheme } from '@mui/material';
 import EncodePage from './pages/Encode/Encode';
 import LoginPage from './pages/Login/LoginPage';
-import Logo from './assets/Logo';
 import lightTheme from './theme/light';
 import darkTheme from './theme/dark';
 import { ColorContext } from './models/ColorContext';
 import NavigationBar from './pages/Navigation/NavigationBar';
+import ErrorPage from './pages/Error/ErrorPage';
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>('light');
@@ -44,6 +44,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/encode" element={<EncodePage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </ThemeProvider>

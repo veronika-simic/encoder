@@ -1,18 +1,26 @@
-import { TextField, Button, FormControl, FormHelperText } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import {
+  TextField,
+  Button,
+  FormControl,
+  FormHelperText,
+  Box,
+  useTheme,
+} from '@mui/material';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../api/axios';
+import ErrorAlert from '../../components/ErrorAlert';
+import SuccessAlert from '../../components/SuccessAlert';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [disabled, setDisabled] = useState(true);
   const [containsN, setContainsN] = useState(false);
   const [contains6C, setContains6C] = useState(false);
   const [allValid, setAllValid] = useState(false);
-
+  const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const validateEmail = (email: string) => {
     const emailRegex =
@@ -29,14 +37,14 @@ export default function LoginPage() {
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-shadow
+  // eslint-disable-next-line @typescript-eslint/no-shadow, consistent-return
   const validatePassword = (password: string) => {
-    if (/\d/.test(password)) setContainsN(true);
-
-    if (password.length >= 6) setContains6C(true);
-
-    if (containsN && contains6C) setAllValid(true);
-    return password;
+    if (/\d/.test(password) && password.length >= 6) {
+      setContainsN(true);
+      setContains6C(true);
+      setAllValid(true);
+      return password;
+    }
   };
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -51,73 +59,91 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
   const onButtonClick = () => {
-    loginUser(email, password);
+    if (
+      email === 'optimus.prime@autobots.com' &&
+      password === 'validPassword1234!'
+    ) {
+      loginUser(email, password);
+      const path = '/encode';
+      navigate(path);
+      <SuccessAlert />;
+    }
+    <ErrorAlert />;
   };
 
-  useEffect(() => {
-    setDisabled(!validateEmail(email));
-  }, [email, password]);
-
   return (
-    <FormControl>
-      <h1 className="mb-6 text-6xl font-bold">LOGIN.</h1>
-      <h2 className="mb-2 text-5xl tracking-wide">Welcome Back,</h2>
-      <h2 className="text-4xl font-light">Sign in to continue</h2>
-
-      <TextField
-        id="email"
-        label="Email"
-        variant="standard"
-        fullWidth
-        required
-        value={email}
-        onChange={handleEmailChange}
-        error={Boolean(emailError)}
-        helperText={emailError}
-        sx={{ display: 'block', my: '2rem' }}
-        inputProps={{
-          style: { color: 'white' },
-        }}
-      />
-      <FormHelperText
-        id="my-helper-text"
-        sx={{ textAlign: 'center', color: 'white' }}
-      >
-        We&apos;ll never share your email.
-      </FormHelperText>
-
-      <TextField
-        id="password"
-        label="Password"
-        variant="standard"
-        fullWidth
-        required
-        autoComplete="current-password"
-        value={password}
-        onChange={handlePasswordChange}
-        error={Boolean(passwordError)}
-        helperText={passwordError}
-        sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
-        inputProps={{
-          style: { color: 'white' },
-        }}
-      />
-
-      <h3 className="text-xl">Forgot password?</h3>
-      <Button
-        variant="outlined"
-        sx={{
-          borderColor: 'white',
-          color: 'white',
-          fontSize: '2rem',
-          padding: '1rem 2.5rem',
-          my: '2rem',
-        }}
-        onClick={onButtonClick}
-      >
-        Log in
-      </Button>
-      <h3 className="mt-3 text-xl">New user? Sign up</h3>
-    </FormControl>
+    <Box
+      sx={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'center',
+        textAlign: { xs: 'center', sm: 'left' },
+        mx: '2rem',
+      }}
+    >
+      <FormControl>
+        <h1 className="mb-6 text-6xl font-bold">LOGIN.</h1>
+        <h2 className="mb-2 text-5xl tracking-wide">Welcome Back,</h2>
+        <h2 className="text-4xl font-light">Sign in to continue</h2>
+        <TextField
+          id="email"
+          label="Email"
+          variant="standard"
+          fullWidth
+          required
+          value={email}
+          onChange={handleEmailChange}
+          error={Boolean(emailError)}
+          helperText={emailError}
+          sx={{ display: 'block', my: '2rem' }}
+          inputProps={{
+            style: { color: theme.palette.primary.main },
+          }}
+          FormHelperTextProps={{
+            sx: { fontSize: '1rem' },
+          }}
+        />
+        <FormHelperText
+          id="my-helper-text"
+          sx={{ textAlign: 'center', color: theme.palette.primary.main }}
+        >
+          We&apos;ll never share your email.
+        </FormHelperText>
+        <TextField
+          id="password"
+          label="Password"
+          variant="standard"
+          fullWidth
+          required
+          autoComplete="current-password"
+          value={password}
+          onChange={handlePasswordChange}
+          error={Boolean(passwordError)}
+          helperText={passwordError}
+          sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
+          inputProps={{
+            style: { color: theme.palette.primary.main },
+          }}
+          FormHelperTextProps={{
+            sx: { fontSize: '1rem' },
+          }}
+        />
+        <h3 className="text-xl">Forgot password?</h3>
+        <Button
+          variant="outlined"
+          sx={{
+            borderColor: theme.palette.primary.main,
+            color: theme.palette.primary.main,
+            fontSize: '2rem',
+            padding: '1rem 2.5rem',
+            my: '2rem',
+          }}
+          onClick={onButtonClick}
+        >
+          Log in
+        </Button>
+        <h3 className="mt-3 text-center text-xl">New user? Sign up</h3>
+      </FormControl>
+    </Box>
   );
 }

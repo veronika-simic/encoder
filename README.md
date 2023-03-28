@@ -27,7 +27,6 @@
 
 
 ## Features
-List the ready features here:
 - User can login by providing a valid email address and password
 - Password has to have at least 6 characters and 1 number
 - Encoder function returns an encoded string based on the input
@@ -65,6 +64,10 @@ After that run the project from the root with
 To see the project in browser visit: 
 
 > http://127.0.0.1:5173/
+
+Documentation is available at: 
+
+> http://localhost:4000/api-docs
 ## Usage
 Login with authorized credentials provided in the servers login.js
 Input a string you would like to encode

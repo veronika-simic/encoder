@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
-import { Box, TextField, FormControl, FormHelperText } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  TextField,
+  FormControl,
+  FormHelperText,
+  useTheme,
+} from '@mui/material';
+import { encodeUserInput } from '../../api/axios';
 
 export default function EncodePage() {
   const [userInput, setUserInput] = useState('');
   const [userInputError, setUserInputError] = useState('');
+  const [encodedUserInput, setEncodedUserInput] = useState('');
+  const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const validateUserInput = (userInput: string) => {
     const userInputRegex = /^[A-Za-z]+$/;
@@ -18,6 +27,15 @@ export default function EncodePage() {
       setUserInputError('');
     }
   };
+
+  useEffect(() => {
+    const getEncodedString = async () => {
+      const response = await encodeUserInput(userInput);
+      setEncodedUserInput(response.data);
+    };
+    getEncodedString();
+  }, [userInput]);
+
   return (
     <Box
       sx={{
@@ -38,18 +56,37 @@ export default function EncodePage() {
           onChange={handleInputChange}
           error={Boolean(userInputError)}
           helperText={userInputError}
-          sx={{ display: 'block', my: '2rem', color: 'white' }}
+          sx={{ display: 'block', my: '2rem' }}
+          inputProps={{
+            style: { color: theme.palette.primary.main, fontSize: '2rem' },
+          }}
           FormHelperTextProps={{
             sx: { fontSize: '1rem', textAlign: 'center' },
           }}
         />
-        <FormHelperText id="my-helper-text" sx={{ textAlign: 'center' }}>
+        <FormHelperText
+          id="my-helper-text"
+          sx={{ textAlign: 'center', fontSize: '1.5rem' }}
+        >
           (We only accept alphabetic characters)
         </FormHelperText>
-        <h2 className="my-24 text-center text-4xl font-bold">
+        <h2 className="my-24 hidden text-center text-4xl font-bold md:block">
           YOUR ENCODED STRING
         </h2>
-        <Box sx={{ border: '1px solid white', height: '4.5rem' }} />
+        <Box
+          sx={{
+            border: '2px solid',
+            borderColor: theme.palette.primary.main,
+            height: '4.5rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <p className="text-center text-6xl">
+            {!userInputError && encodedUserInput}
+          </p>
+        </Box>
       </FormControl>
     </Box>
   );

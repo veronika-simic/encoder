@@ -7,18 +7,19 @@ export async function loginUser(email: string, password: string) {
       email,
       password,
     });
-    console.log(response);
     return response;
   } catch (err) {
     return err;
   }
 }
 
-export async function getEncoderPage() {
+export async function encodeUserInput(userInput: string) {
   try {
-    const response = await axios.get('/encode');
+    const response = await axios.post('http://localhost:4000/encode', {
+      userInput,
+    });
     return response;
-  } catch (err) {
+  } catch (err: any) {
     return err;
   }
 }

@@ -66,9 +66,9 @@ export default function LoginPage() {
       loginUser(email, password);
       const path = '/encode';
       navigate(path);
-      return <SuccessAlert />;
+      <SuccessAlert />;
     }
-    return <ErrorAlert />;
+    <ErrorAlert />;
   };
 
   return (

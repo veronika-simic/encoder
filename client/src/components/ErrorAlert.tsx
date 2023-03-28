@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Alert, Dialog } from '@mui/material';
+import { Alert, Snackbar } from '@mui/material';
 
 export default function ErrorAlert() {
   return (
-    <Dialog open>
+    <Snackbar open autoHideDuration={6000}>
       <Alert severity="error" onClose={() => {}}>
-        Error wrong credentials
+        Wrong credentials!
       </Alert>
-    </Dialog>
+    </Snackbar>
   );
 }

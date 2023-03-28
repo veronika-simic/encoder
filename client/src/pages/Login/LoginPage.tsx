@@ -66,9 +66,7 @@ export default function LoginPage() {
       loginUser(email, password);
       const path = '/encode';
       navigate(path);
-      <SuccessAlert />;
     }
-    <ErrorAlert />;
   };
 
   return (
@@ -105,7 +103,11 @@ export default function LoginPage() {
         />
         <FormHelperText
           id="my-helper-text"
-          sx={{ textAlign: 'center', color: theme.palette.primary.main }}
+          sx={{
+            textAlign: 'center',
+            color: theme.palette.primary.main,
+            fontSize: '1rem',
+          }}
         >
           We&apos;ll never share your email.
         </FormHelperText>

@@ -5,7 +5,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import { CssBaseline, PaletteMode, createTheme } from '@mui/material';
 import EncodePage from './pages/Encode/Encode';
 import LoginPage from './pages/Login/LoginPage';
-import Logo from './assets/Logo';
 import lightTheme from './theme/light';
 import darkTheme from './theme/dark';
 import { ColorContext } from './models/ColorContext';

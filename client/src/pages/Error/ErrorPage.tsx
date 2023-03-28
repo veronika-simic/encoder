@@ -2,7 +2,6 @@ import { Typography, useTheme, Box } from '@mui/material';
 import React from 'react';
 
 export default function ErrorPage() {
-  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -10,17 +9,17 @@ export default function ErrorPage() {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',
-        textAlign: { xs: 'center', sm: 'left' },
-        mx: '2rem',
-        mt: '4rem',
+        textAlign: 'center',
+        mt: '15%',
+        width: '100%',
         rowGap: '3rem',
       }}
     >
-      <Typography variant="h2">OOOOOOOOPS !</Typography>
+      <Typography variant="h2" sx={{ fontSize: { xs: '2rem', md: '4rem' } }}>
+        OOOOOOOPS !
+      </Typography>
       <Typography variant="h5">
-        <span style={{ marginLeft: '3.5rem' }}>
-          We don&apos;t have this page.
-        </span>
+        We don&apos;t have this page.
         <span style={{ display: 'block' }}>
           The responsible person will be fired.
         </span>

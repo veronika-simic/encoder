@@ -1,5 +1,6 @@
 module.exports = function encoder(req, res) {
   const { userInput } = req.body;
+
   let count = 1;
   const encodedString = userInput
     .split("")

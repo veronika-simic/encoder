@@ -1,11 +1,10 @@
 const express = require("express"),
   swaggerJsdoc = require("swagger-jsdoc"),
   swaggerUi = require("swagger-ui-express"),
-  path = require("path"),
   cors = require("cors");
 const app = express();
 app.use(cors());
-const port = 4000;
+
 const login = require("./login");
 const encode = require("./encoder");
 const middleware = require("./middleware/authorization");
@@ -44,4 +43,4 @@ const options = {
 const specs = swaggerJsdoc(options);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+module.exports = app;

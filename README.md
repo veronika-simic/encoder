@@ -76,12 +76,12 @@ from root.
 
 ## Usage
 
-Login with authorized credentials provided in the servers login.js
-Input a string you would like to encode
+- Login with authorized credentials provided in the servers login.js
+- Input a string you would like to encode
 
 ## Project Status
 
-Project is: _in progress_
+Project is: _finished_
 
 ## Room for Improvement
 

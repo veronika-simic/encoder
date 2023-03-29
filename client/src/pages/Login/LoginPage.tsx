@@ -5,9 +5,12 @@ import {
   FormHelperText,
   Box,
   useTheme,
+  FormGroup,
+  InputAdornment,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { loginUser } from '../../api/axios';
 import ErrorAlert from '../../components/ErrorAlert';
 import SuccessAlert from '../../components/SuccessAlert';
@@ -17,6 +20,8 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
   const [containsN, setContainsN] = useState(false);
   const [contains6C, setContains6C] = useState(false);
   const [allValid, setAllValid] = useState(false);
@@ -93,7 +98,7 @@ export default function LoginPage() {
           onChange={handleEmailChange}
           error={Boolean(emailError)}
           helperText={emailError}
-          sx={{ display: 'block', my: '2rem' }}
+          sx={{ my: '2rem' }}
           inputProps={{
             style: { color: theme.palette.primary.main },
           }}
@@ -111,10 +116,12 @@ export default function LoginPage() {
         >
           We&apos;ll never share your email.
         </FormHelperText>
+
         <TextField
           id="password"
           label="Password"
           variant="standard"
+          type={showPassword ? 'text' : 'password'}
           fullWidth
           required
           autoComplete="current-password"
@@ -122,14 +129,24 @@ export default function LoginPage() {
           onChange={handlePasswordChange}
           error={Boolean(passwordError)}
           helperText={passwordError}
-          sx={{ display: 'block', mt: '2rem', mb: '1rem' }}
-          inputProps={{
+          sx={{ mt: '2rem', mb: '1rem' }}
+          InputProps={{
             style: { color: theme.palette.primary.main },
+            endAdornment: (
+              <InputAdornment position="end">
+                <Button
+                  onClick={() => setShowPassword((s) => !s)}
+                  startIcon={<VisibilityIcon />}
+                  sx={{ m: 0, p: 0 }}
+                />
+              </InputAdornment>
+            ),
           }}
           FormHelperTextProps={{
             sx: { fontSize: '1rem' },
           }}
         />
+
         <h3 className="text-xl">Forgot password?</h3>
         <Button
           variant="outlined"
@@ -144,7 +161,9 @@ export default function LoginPage() {
         >
           Log in
         </Button>
-        <h3 className="mt-3 text-center text-xl">New user? Sign up</h3>
+        <h3 className="mt-3 text-center text-xl font-bold">
+          New user? Sign up
+        </h3>
       </FormControl>
     </Box>
   );

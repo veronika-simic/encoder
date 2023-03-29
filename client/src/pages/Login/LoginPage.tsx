@@ -5,15 +5,12 @@ import {
   FormHelperText,
   Box,
   useTheme,
-  FormGroup,
   InputAdornment,
 } from '@mui/material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { loginUser } from '../../api/axios';
-import ErrorAlert from '../../components/ErrorAlert';
-import SuccessAlert from '../../components/SuccessAlert';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -138,7 +135,9 @@ export default function LoginPage() {
                   onClick={() => setShowPassword((s) => !s)}
                   startIcon={<VisibilityIcon />}
                   sx={{ m: 0, p: 0 }}
-                />
+                >
+                  Show
+                </Button>
               </InputAdornment>
             ),
           }}

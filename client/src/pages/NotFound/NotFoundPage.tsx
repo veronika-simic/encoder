@@ -1,7 +1,7 @@
 import { Typography, useTheme, Box } from '@mui/material';
 import React from 'react';
 
-export default function ErrorPage() {
+export default function NotFoundPage() {
   return (
     <Box
       sx={{

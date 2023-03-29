@@ -9,7 +9,7 @@ import lightTheme from './theme/light';
 import darkTheme from './theme/dark';
 import { ColorContext } from './models/ColorContext';
 import NavigationBar from './pages/Navigation/NavigationBar';
-import ErrorPage from './pages/Error/ErrorPage';
+import NotFoundPage from './pages/NotFound/NotFoundPage';
 
 function App() {
   const [mode, setMode] = useState<PaletteMode>('light');
@@ -44,7 +44,7 @@ function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/encode" element={<EncodePage />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </ThemeProvider>

@@ -1,6 +1,6 @@
 # Project Name
 > Encoder application that allows user to encode a desired string after logging in
-> Live demo [_here_](https://www.example.com). 
+> Live demo [_here_](https://lovely-daifuku-962620.netlify.app/). 
 
 ## Table of Contents
 * [General Info](#general-information)

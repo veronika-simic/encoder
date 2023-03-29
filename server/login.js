@@ -1,6 +1,5 @@
 module.exports = function login(req, res) {
   const { email, password } = req.body;
-  console.log(req.body);
   if (
     email === "optimus.prime@autobots.com" &&
     password === "validPassword1234!"

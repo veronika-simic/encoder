@@ -8,10 +8,11 @@ app.use(cors());
 const port = 4000;
 const login = require("./login");
 const encode = require("./encoder");
+const middleware = require("./middleware/authorization");
 app.use(express.json());
 
 app.post("/login", login);
-app.post("/encode", encode);
+app.post("/encode", middleware, encode);
 /*  swagger */
 const options = {
   definition: {

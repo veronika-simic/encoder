@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   TextField,
@@ -9,32 +9,31 @@ import {
 import { encodeUserInput } from '../../api/axios';
 
 export default function EncodePage() {
-  const [userInput, setUserInput] = useState('');
   const [userInputError, setUserInputError] = useState('');
   const [encodedUserInput, setEncodedUserInput] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const validateUserInput = (userInput: string) => {
     const userInputRegex = /^[A-Za-z]+$/;
     return userInputRegex.test(userInput);
   };
-
+  const getEncodedString = async (value: string) => {
+    const response = await encodeUserInput(value);
+    if (typeof response === 'string') {
+      setErrorMessage('You have to login');
+    } else {
+      setEncodedUserInput(response.data);
+    }
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserInput(e.target.value);
     if (!validateUserInput(e.target.value)) {
       setUserInputError('Only alphabetic characters are allowed');
     } else {
       setUserInputError('');
+      getEncodedString(e.target.value);
     }
   };
-
-  useEffect(() => {
-    const getEncodedString = async () => {
-      const response = await encodeUserInput(userInput);
-      setEncodedUserInput(response.data);
-    };
-    getEncodedString();
-  }, [userInput]);
 
   return (
     <Box
@@ -52,7 +51,6 @@ export default function EncodePage() {
           id="encode"
           variant="standard"
           fullWidth
-          value={userInput}
           onChange={handleInputChange}
           error={Boolean(userInputError)}
           helperText={userInputError}
@@ -82,15 +80,18 @@ export default function EncodePage() {
             alignItems: 'center',
             border: '2px solid',
             borderColor: theme.palette.primary.main,
-            height: '4.5rem',
+            padding: '20px',
             display: 'flex',
             justifyContent: 'center',
           }}
         >
-          <p className="text-center text-6xl">
+          <p className="break-all text-center text-6xl">
             {!userInputError && encodedUserInput}
           </p>
         </Box>
+        <p className="mt-12 text-center text-4xl  text-red-600">
+          {errorMessage && errorMessage}
+        </p>
       </FormControl>
     </Box>
   );

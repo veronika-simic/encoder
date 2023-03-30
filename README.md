@@ -27,6 +27,8 @@
 - Node - version 16.17.0
 - React - version 18.2.0
 - Express - version 4.17.1
+- Tailwind - version 3.2.7
+- MUI - version 5.11.14
 
 ## Features
 

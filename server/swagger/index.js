@@ -65,14 +65,6 @@
  *         description: User error	
  *       500:
  *         description: Internal server error
- *   get:
- *     summary: Home page
- *     tags: [Login]
- *     responses:
- *       200:
- *         description: Login page.
- *       500:
- *         description: Internal server error
  */
 
 /**
@@ -97,8 +89,8 @@
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Encode'
- *       400:
- *         description: User error
+ *       401:
+ *         description: Unauthorized user
  *       500:
  *         description: Internal server error
  *

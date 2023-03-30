@@ -36,8 +36,22 @@ const options = {
         url: "http://localhost:4000",
       },
     ],
+    basePath: "/",
+    securityDefinitions: {
+      Authorization: {
+        type: "apiKey",
+        name: "authorization",
+        in: "header",
+        description: "Authentication token",
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
   },
-  apis: ["./routes/*.js"],
+  apis: ["./swagger/*.js"],
 };
 
 const specs = swaggerJsdoc(options);

@@ -70,6 +70,8 @@ Documentation is available at:
 
 Project can also be started by running:
 
+`docker compose up build` and
+
 `docker compose up`
 
 from root.
